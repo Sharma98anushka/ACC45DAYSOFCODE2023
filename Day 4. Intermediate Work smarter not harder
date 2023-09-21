@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t>0){
+	    int l,a,b;
+	    cin>>l>>a>>b;
+	    int c=l/a;
+	    int d=l/b;
+	  
+	    if(c>d)
+	    {
+	          if(l%b!=0 || l%a!=0)
+	        cout<<c-d-2<<endl;
+	        else{
+	            cout<<c-d-1<<endl;
+	        }
+	    }
+	    
+	    else{
+	        cout<<"-1"<<endl;
+	    }
+	    t--;
+	}
+	return 0;
+}
