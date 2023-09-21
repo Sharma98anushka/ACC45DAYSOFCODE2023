@@ -8,18 +8,23 @@ int main() {
 	while(t>0){
 	    int l,a,b;
 	    cin>>l>>a>>b;
-	    int c=l/a;
-	    int d=l/b;
-	  
-	    if(c>d)
-	    {
-	          if(l%b!=0 || l%a!=0)
-	        cout<<c-d-2<<endl;
-	        else{
-	            cout<<c-d-1<<endl;
-	        }
+	  int c,d;
+
+	    if(l%a==0){
+	        c=l/a;
 	    }
-	    
+	    else{
+	       c=(l/a)+1;
+	    }
+	    if(l%b==0){
+	        d=l/b;
+	    }
+	    else{
+	        d=(l/b)+1;
+	    }
+	    if(c>d){
+	        cout<<c-d-1<<endl;
+	    }
 	    else{
 	        cout<<"-1"<<endl;
 	    }
