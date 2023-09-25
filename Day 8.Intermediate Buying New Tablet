@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t>0){
+	    int n,b,area=0;
+	    cin>>n>>b;
+	    int w,h,p;
+	    for(int i=0;i<n;i++){
+	    cin>>w>>h>>p;
+	   if(p<=b){
+	           if(area<w*h)
+	           area=w*h;
+	        } 
+	    }
+	    
+	    if(area==0){
+	       cout<<"no tablet"<<endl;
+	        }
+	        else{
+	             cout<<area<<endl;
+	            
+	            
+	        }
+	    
+	    
+	    
+	    t--;
+	}
+	return 0;
+}
