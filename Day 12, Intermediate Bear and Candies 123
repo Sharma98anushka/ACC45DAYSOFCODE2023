@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t>0){
+	    int a,b;
+	    cin>>a>>b;
+	    int lim=0;
+	    int bob=0;
+	    for(int i=1;;i++){
+	        if(i%2!=0){
+	            lim+=i;
+	            if(lim>a){
+	                cout<<"Bob"<<endl;
+	            break;
+	                
+	            }
+	          
+	        }
+	        else{
+	            bob+=i;
+	            if(bob>b){
+	                cout<<"Limak"<<endl;
+	                break;
+	            }
+	            
+	        }
+	    }
+	    
+	    t--;
+	}
+	return 0;
+}
