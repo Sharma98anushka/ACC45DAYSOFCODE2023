@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t>0){
+	    long n;
+	    cin>>n;
+	    cout<<(n*n)/2<<endl;
+	   
+	    t--;
+	}
+	return 0;
+}
