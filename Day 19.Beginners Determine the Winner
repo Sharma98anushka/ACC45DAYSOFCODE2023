@@ -1,0 +1,25 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int a,b,c,d;
+	    cin>>a>>b>>c>>d;
+	  int p=max(a,b);
+	   int q=max(c,d);
+	   if(p>q){
+	       cout<<"Q"<<endl;
+	   }
+	   else if(q>p){
+	       cout<<"P"<<endl;
+	   }
+	   else{
+	       cout<<"TIE"<<endl;
+	   }
+	}
+	return 0;
+}
