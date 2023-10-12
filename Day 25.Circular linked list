@@ -1,0 +1,232 @@
+#include<iostream>
+using namespace std;
+struct node{
+    int data;
+    struct node* next;
+};
+struct node* last=NULL;
+void insert_begin(){
+    struct node* newnode;
+    newnode = new node;
+    int item;
+    cout<<"Enter the item: ";
+    cin>>item;
+    newnode -> data = item;
+    if(last==NULL){
+    
+        last = newnode;
+        newnode->next = last;
+
+    }
+    else{
+        newnode->next= last->next;
+        last->next=newnode;
+    }
+}
+void insert_pos(){
+struct node* newnode;
+    newnode = new node;
+    int item,position;
+    cout<<"Enter the item and position: ";
+    cin>>item>>position;
+    newnode -> data = item;
+    newnode->data = position;
+    if(last==NULL){
+        if(position==1){
+           last = newnode;
+        newnode->next = last;
+cout<<"Element is inserted at beginning";
+        }
+        else{
+            cout<<"Invalid position ";
+        }
+    }
+    else{
+        struct node* crptr=last->next;
+int len=0;
+while(crptr != last){
+    len++;
+    crptr=crptr->next;
+}
+if(position>0 && position <= len){
+    crptr = last->next;
+    for(int i=0;i<position-2;i++){
+        crptr= crptr->next;
+    }
+    newnode->next = crptr->next;
+    crptr->next=newnode;
+    
+    cout<<"Element is inserted at given position";
+}
+else{
+    cout<<"Position is not valid";
+}
+    }
+}
+void  insert_end(){
+struct node* newnode;
+    newnode = new node;
+    int item;
+    cout<<"Enter the item: ";
+    cin>>item;
+    newnode -> data = item;
+    if(last==NULL){
+        last = newnode;
+        newnode->next = last;
+
+    }
+    else{
+        newnode->next = last->next;
+        last->next = newnode;
+        last= newnode;
+        }
+
+    }
+    void del_begin(){
+ if(last==NULL){
+    cout<<"List is empty , deletion is not possible ";
+ }
+ else{
+    struct node*crptr=last->next;
+    if(crptr->next==NULL){
+        last=NULL;
+        free(crptr);
+    }
+    else{
+        last->next=crptr->next;
+        free(crptr);
+    }
+ }
+}
+void del_pos(){
+    int position;
+    cout<<"Enter position to delete item: ";
+    cin>>position;
+   
+    if(last==NULL){
+        cout<<"\nList is not found";
+    }
+    else{
+        struct node*crptr = last->next;
+        int len=0;
+        while(crptr!=last){
+            len++;
+            crptr= crptr->next;
+        }
+        len=len+1;
+        if(position>0 && position<=len){
+            crptr= crptr->next;
+            struct node* frwrd,*bcrwrd;
+            frwrd= last->next;
+            for(int i=0;i<position-1;i++){
+                bcrwrd=frwrd;
+                frwrd  = frwrd->next;
+            }
+            bcrwrd->next=frwrd->next;
+            free(frwrd);
+        }
+        else{
+            cout<<"Position is not valid";
+        }
+    }
+}
+void del_end(){
+  struct node* crptr = last;
+    struct node *temp= last;
+if(last==NULL){
+    cout<<"List is empty , deletion is not possible ";
+}
+ else{
+    
+    while(crptr->next!=last){
+        crptr= crptr->next;
+
+    }
+    crptr->next = last->next;
+    last  = crptr;
+    free(temp);
+ }
+ /*struct node*frwrd,*bcwrd;
+  if(last==NULL){
+        cout<<"\nList is not found";
+    }
+    else{
+        frwrd = last->next;
+        if(last->next==last){
+            last= NULL;
+            free(frwrd);
+        }
+        else{
+            while(frwrd!=last){
+                bcwrd=frwrd;
+                frwrd = frwrd->next;
+            }
+            bcwrd->next=last->next;
+            last=bcwrd;
+            free(frwrd);
+        }
+        
+    }*/
+}
+
+void display(){
+if (last== NULL){
+    cout<<"List does not exist ";
+}
+else{
+    struct node* crptr;
+    crptr=last->next;
+    while(crptr!=last){
+        cout<<crptr->data;
+        crptr=crptr->next;
+    }
+    cout<<crptr->data;
+}
+}
+
+int main(){
+     int choice;
+    while(1){
+    cout<<"\n1.Insert at the beginning: ";
+    cout<<"\n2.Insert at the given position: ";
+     cout<<"\n3.Insert at the end: ";
+    cout<<"\n4.Deletion at the beginning: ";
+    cout<<"\n5.Deletion at the specific position: ";
+    cout<<"\n6.Deletion at the end: ";
+    cout<<"\n7.Display:  ";
+    cout<<"\n8.Exit: ";
+    cout<<"\nEnter the choice: ";
+    cin >> choice;
+     switch(choice){
+        case 1:
+        insert_begin();
+        break;
+        case 2:
+        insert_pos();
+        break;
+        case 3:
+        insert_end();
+        break;
+        case 4:
+        del_begin();
+        break;
+        case 5:
+        del_pos();
+        break;
+        case 6:
+        del_end();
+        break;
+        case 7:
+        display();
+        break;
+        case 8:
+        exit(0);
+        default:
+        cout<<"Enter the correct position: ";
+    }
+    }
+    
+    
+
+    return 0;
+}
