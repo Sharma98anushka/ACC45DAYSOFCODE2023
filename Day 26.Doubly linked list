@@ -1,0 +1,212 @@
+#include<iostream>
+using namespace std;
+struct node{
+    int data;
+    struct node* prev;
+    struct node* next;
+};
+struct node* start=NULL;
+void insert_begin(){
+    struct node* newnode;
+    newnode = new node;
+    int item;
+    cout<<"Enter the item: ";
+    cin>>item;
+    newnode -> data = item;
+    if(start==NULL){
+        newnode->prev = NULL;
+        newnode->next = NULL;
+        start=newnode;
+
+    }
+    else{
+        newnode->prev=NULL;
+        newnode->next=start;
+        start->prev = newnode;
+        start = newnode;
+    }
+}
+void insert_pos(){
+     struct node* newnode;
+    newnode = new node;
+    int item,posi;
+    cout<<"Enter the item and position: ";
+    cin>>item>>posi;
+    newnode -> data = item;
+   
+    if(start==NULL){
+        if(posi==1){
+           newnode->next = NULL;
+        newnode->prev = NULL;
+        start = newnode;
+cout<<"Element is inserted at beginning";
+        }
+        else{
+            cout<<"Invalid position ";
+        
+    }
+    }
+        else{
+            struct node* crptr=start;
+int len=0;
+while(crptr->next!= NULL){
+    len++;
+    crptr=crptr->next;
+}
+if(posi>0 && posi <= len+1){
+    crptr = start;
+for(int i=0;i<posi-2;i++){
+    crptr=crptr->next;
+}
+newnode->next = crptr->next;
+    newnode->prev = crptr;
+        crptr->next->prev = newnode;
+    crptr->next=newnode;
+        
+    }
+        }
+}
+void insert_end(){
+struct node* newnode;
+    newnode = new node;
+    int item;
+    cout<<"Enter the item: ";
+    cin>>item;
+    newnode -> data = item;
+    if(start==NULL){
+        newnode->prev = NULL;
+        newnode->next = NULL;
+        start=newnode;
+
+    }
+    else{
+        struct node * crptr=start;
+        while(crptr->next!=NULL){
+            crptr = crptr->next;
+
+        }
+        
+        newnode->prev = crptr;
+        crptr->next = newnode;
+        newnode->next=NULL;
+        
+    }
+}
+void del_begin(){
+   if(start==NULL){
+    cout<<"List is empty , deletion is not possible ";
+}
+ else{
+struct node*crptr=start;
+    if(crptr->next==NULL){
+        start=NULL;
+        free(crptr);
+    }
+    else{
+        crptr->next->prev=NULL;
+        start=crptr->next;
+        free(crptr);
+
+    }
+ }
+}
+void del_pos(){
+    int position;
+    cout<<"Enter position to delete item: ";
+    cin>>position;
+   
+    if(start==NULL){
+        cout<<"\nList is not found";
+    }
+    else{
+        struct node*crptr = start;
+        int len=0;
+        while(crptr!=NULL){
+            len++;
+            crptr= crptr->next;
+
+        }
+        if(position>0 && position<=len){
+            struct node*crptr = start;
+            for(int i=0;i<position-1;i++){
+                crptr=crptr->next;
+            }
+            crptr->next->prev = crptr->prev;
+            crptr->prev->next = crptr->next;
+            free(crptr);
+        }
+        }
+}
+void del_end(){
+if(start==NULL){
+    cout<<"List is empty , deletion is not possible ";
+}
+else{
+    struct node*crptr = start;
+    while(crptr->next!=NULL){
+        crptr=crptr->next;
+    }
+    crptr->prev->next = NULL;
+    free(crptr);
+}
+}
+
+void display(){
+if (start == NULL){
+    cout<<"List does not exist ";
+}
+else{
+    struct node* crptr;
+    crptr=start;
+    while(crptr!=NULL){
+        cout<<crptr->data<<"-->";
+        crptr=crptr->next;
+    }
+}
+}
+int main(){
+     int choice;
+    while(1){
+    cout<<"\n1.Insert at the beginning: ";
+    cout<<"\n2.Insert at the given position: ";
+     cout<<"\n3.Insert at the end: ";
+    cout<<"\n4.Deletion at the beginning: ";
+    cout<<"\n5.Deletion at the specific position: ";
+    cout<<"\n6.Deletion at the end: ";
+    cout<<"\n7.Display:  ";
+    cout<<"\n8.Exit: ";
+    cout<<"\nEnter the choice: ";
+    cin >> choice;
+     switch(choice){
+        case 1:
+        insert_begin();
+        break;
+        case 2:
+        insert_pos();
+        break;
+        case 3:
+        insert_end();
+        break;
+        case 4:
+        del_begin();
+        break;
+        case 5:
+        del_pos();
+        break;
+        case 6:
+        del_end();
+        break;
+        case 7:
+        display();
+        break;
+        case 8:
+        exit(0);
+        default:
+        cout<<"Enter the correct position: ";
+    }
+    }
+    
+    
+
+    return 0;
+}
